@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HungerDeal</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_home">Home</string>
+    <string name="title_search">Search</string>
+    <string name="title_apps">Apps</string>
+    <string name="title_account">Account</string>
+    <string name="Item">Item</string>
+    <string name="restaurant">Restaurant</string>
+</resources>
