@@ -18,36 +18,36 @@ class Dashboard : AppCompatActivity() {
         val fragmentManager= supportFragmentManager
         fragmentManager.beginTransaction().add(R.id.container_dashboard, account).hide(account).commit()
         fragmentManager.beginTransaction().add(R.id.container_dashboard, apps).hide(apps).commit()
-        fragmentManager.beginTransaction().add(R.id.container_dashboard, home).hide(home).commit()
-        fragmentManager.beginTransaction().add(R.id.container_dashboard, search).commit()
-        var active:Fragment= search
+        fragmentManager.beginTransaction().add(R.id.container_dashboard, search).hide(search).commit()
+        fragmentManager.beginTransaction().add(R.id.container_dashboard, home).commit()
+        var active:Fragment= home
         nav_view_dashboard.setOnNavigationItemSelectedListener { p0 ->
             when (p0.itemId) {
                 R.id.navigation_home-> {
-                    if (active!=search) {
-                        active=search
-                        fragmentManager.beginTransaction().hide(active).show(search).commit()
+                    if (active!=home) {
+                        fragmentManager.beginTransaction().hide(active).show(home).commit()
+                        active=home
                     }
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_search-> {
                     if (active!=search) {
-                        active=search
                         fragmentManager.beginTransaction().hide(active).show(search).commit()
+                        active=search
                     }
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_apps-> {
                     if (active!=apps) {
-                        active=apps
                         fragmentManager.beginTransaction().hide(active).show(apps).commit()
+                        active=apps
                     }
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_account-> {
                     if (active!=account) {
-                        active=account
                         fragmentManager.beginTransaction().hide(active).show(account).commit()
+                        active=account
                     }
                     return@setOnNavigationItemSelectedListener true
                 }
