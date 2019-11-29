@@ -8,43 +8,14 @@
     tools:context=".DeliveryLocation">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/top_bar_location"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:cardElevation="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp">
-
-            <TextView
-                android:id="@+id/delivery_txt_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/deliverylocation"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         app:cardCornerRadius="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_bar_location">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -78,48 +49,48 @@
             <TextView
                 android:id="@+id/textView3_location"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/locationtype"
+                android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/location_location"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="25dp"
-                android:layout_height="wrap_content"
-                android:text="@string/locationtype" />
+                app:layout_constraintTop_toBottomOf="@id/location_location" />
 
             <Spinner
                 android:id="@+id/spinner_location"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@id/textView3_location"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:entries="@array/location"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_height="wrap_content" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView3_location" />
 
 
             <TextView
                 android:id="@+id/textView4_location"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/city"
+                android:textColor="@color/black"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/spinner_location"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="25dp"
-                android:layout_height="wrap_content"
-                android:text="@string/city" />
+                app:layout_constraintTop_toBottomOf="@id/spinner_location" />
 
             <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/city_location"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@id/textView4_location"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="@string/cityeg"
                 android:backgroundTint="@color/ultraLightGrey"
+                android:hint="@string/cityeg"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_height="wrap_content">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView4_location">
 
             </androidx.appcompat.widget.AppCompatAutoCompleteTextView>
 

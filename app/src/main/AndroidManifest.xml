@@ -12,10 +12,15 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".DeliveryLocation"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".OnBoarding"
+            android:label="@string/title_activity_on_boarding"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".CompareResult" />
+        <activity android:name=".DeliveryLocation" />
         <activity
             android:name=".Dashboard"
             android:label="@string/title_activity_dashboard" />

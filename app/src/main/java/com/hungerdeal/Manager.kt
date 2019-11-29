@@ -2,7 +2,6 @@ package com.hungerdeal
 
 import android.content.Context
 import android.os.AsyncTask
-import org.json.JSONArray
 import org.json.JSONObject
 import java.io.*
 import java.net.HttpURLConnection
@@ -16,15 +15,10 @@ class Manager(val context:Context) {
     private var info:String= ""
     private var data:String?=null
 //    private val baseurl= "https://hungerdeal.herokuapp.com/app/api"
-    private var listener:OnCompleteListener?= null
     private val baseurl= "http://192.168.51.139/app/api"
 
     interface OnCompleteListener{
         fun onComplete(task:Boolean, info:String, data:String?)
-    }
-
-    fun addOnCompleteListener(listener: OnCompleteListener) {
-        this.listener=listener
     }
 
     fun saveAppData(data: String):Manager {
@@ -63,18 +57,24 @@ class Manager(val context:Context) {
         return this
     }
 
-    fun launchData(): Manager {
-        Launch().execute()
+    fun deleteAppData(): Manager {
+        context.getSharedPreferences("User", Context.MODE_PRIVATE).edit().clear().commit()
+        context.getSharedPreferences("AppData", Context.MODE_PRIVATE).edit().clear().commit()
         return this
     }
 
-    fun compare(keyword: String, restaurant: String, quantity: Int): Manager {
-        Compare(keyword, restaurant, quantity).execute()
+    fun launchData(listener:OnCompleteListener?=null): Manager {
+        Launch(listener).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+        return this
+    }
+
+    fun compare(keyword: String, restaurant: String, quantity: Int, r:String, listener:OnCompleteListener?=null): Manager {
+        Compare(keyword, restaurant, quantity, r, listener).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
         return this
     }
 
 
-    private inner class Launch: AsyncTask<Void, Void, String>() {
+    private inner class Launch(val listener:OnCompleteListener?): AsyncTask<Void, Void, String>() {
         override fun doInBackground(vararg p0: Void?): String? {
             try {
                 val url=URL("$baseurl/home")
@@ -127,13 +127,13 @@ class Manager(val context:Context) {
                 }
             }
             if (listener!==null) {
-                listener!!.onComplete(task, info, data)
+                listener.onComplete(task, info, data)
             }
         }
     }
 
 
-    private inner class Compare(val keyword:String, val restaurant:String, val quantity:Int): AsyncTask<Void, Void, String>() {
+    private inner class Compare(val keyword:String, val restaurant:String, val quantity:Int, val r:String, val listener:OnCompleteListener?): AsyncTask<Void, Void, String>() {
         override fun doInBackground(vararg p0: Void?): String? {
             try {
                 val url=URL("$baseurl/search")
@@ -147,6 +147,7 @@ class Manager(val context:Context) {
                         URLEncoder.encode("restaurant", "UTF-8")+"="+URLEncoder.encode(restaurant, "UTF-8")+"&"+
                         URLEncoder.encode("d_address", "UTF-8")+"="+URLEncoder.encode(getUserLocation(), "UTF-8")+"&"+
                         URLEncoder.encode("city", "UTF-8")+"="+URLEncoder.encode(getUserLocationCity(), "UTF-8")+"&"+
+                        URLEncoder.encode("r", "UTF-8")+"="+URLEncoder.encode(r, "UTF-8")+"&"+
                         URLEncoder.encode("quantity", "UTF-8")+"="+URLEncoder.encode(quantity.toString(), "UTF-8")
                 writer.write(strpath)
                 writer.flush()
@@ -178,13 +179,18 @@ class Manager(val context:Context) {
                 info="Connection Error"
                 data=null
             }else {
-                task=true
-                info=result
                 val obj=JSONObject(result)
-                data=obj.getString("data")
+                info=obj.getString("info")
+                if (obj.getInt("code")<=0) {
+                    task=false
+                    data=null
+                }else {
+                    task=true
+                    data=obj.getString("data")
+                }
             }
             if (listener!==null) {
-                listener!!.onComplete(task, info, data)
+                listener.onComplete(task, info, data)
             }
         }
     }

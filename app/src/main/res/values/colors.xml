@@ -9,4 +9,9 @@
     <color name="black">#000000</color>
     <color name="lightGrey">#CECECE</color>
     <color name="ultraLightGrey">#DFDFDF</color>
+    <color name="transparentGrey">#C4C9C9C9</color>
+
+    <color name="ubereats">#000000</color>
+    <color name="swiggy">#f6881f</color>
+    <color name="zomato">#e23744</color>
 </resources>

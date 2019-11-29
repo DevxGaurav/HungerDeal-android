@@ -18,12 +18,12 @@ class MainActivity : AppCompatActivity() {
 
     fun loaddata() {
         progressBar_main.visibility= View.VISIBLE
-        manager.launchData().addOnCompleteListener(object :Manager.OnCompleteListener{
+        manager.launchData(object :Manager.OnCompleteListener{
             override fun onComplete(task: Boolean, info: String, data: String?) {
                 progressBar_main.visibility=View.INVISIBLE
                 if (task) {
                     if (manager.getUserLocation()==null) {
-                        startActivity(Intent(this@MainActivity, DeliveryLocation::class.java))
+                        startActivity(Intent(this@MainActivity, OnBoarding::class.java))
                     }else {
                         startActivity(Intent(this@MainActivity, Dashboard::class.java))
                     }
