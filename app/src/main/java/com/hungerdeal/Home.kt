@@ -44,7 +44,7 @@ class Home: Fragment() {
             bundle.putInt("quantity", quantity)
             bundle.putString("outlet", cart.get(0).location)
             bundle.putString("restaurant_name", cart.get(0).restaurant_name)
-            startActivity(Intent(context!!, CompareResult::class.java).putExtras(bundle))
+            startActivity(Intent(context!!, CompareCoded::class.java).putExtras(bundle))
         }
         return view
     }

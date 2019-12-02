@@ -34,11 +34,11 @@ class PlaceholderFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_on_boarding, container, false)
         val imageView: ImageView = root.findViewById(R.id.imageView_frag_onboarding)
         if (section==1) {
-            imageView.setImageDrawable(resources.getDrawable(R.drawable.third, context!!.theme))
+            imageView.setImageDrawable(resources.getDrawable(R.drawable.first, context!!.theme))
         }else if (section==2) {
             imageView.setImageDrawable(resources.getDrawable(R.drawable.second, context!!.theme))
         }else if (section==3) {
-            imageView.setImageDrawable(resources.getDrawable(R.drawable.first, context!!.theme))
+            imageView.setImageDrawable(resources.getDrawable(R.drawable.third, context!!.theme))
         }
         return root
     }
